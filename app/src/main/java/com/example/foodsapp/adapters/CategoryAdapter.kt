@@ -9,6 +9,7 @@ import com.example.foodsapp.pojo.Category
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     private var categoryList:List<Category> = ArrayList()
+    var onItemClick: ((Category) -> Unit)? = null
 
     fun setCategoryList(categoryList: List<Category>){
         this.categoryList = categoryList
@@ -28,6 +29,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
             Glide.with(holder.itemView)
                 .load(categoryList[position].strCategoryThumb)
                 .into(imgCategory)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoryList[position])
         }
     }
 

@@ -36,7 +36,9 @@
 
                 <ImageView
                     android:layout_width="@dimen/_34sdp"
-                    android:layout_height="match_parent" android:scaleType="centerCrop" android:src="@drawable/ic_search" />
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_search" />
 
             </LinearLayout>
 
@@ -67,7 +69,8 @@
                     android:id="@+id/img_random_meal"
                     android:layout_width="match_parent"
                     android:scaleType="centerCrop"
-                    android:layout_height="match_parent" android:background="@color/accent" />
+                    android:layout_height="match_parent"
+                    android:background="@color/accent" />
             </androidx.cardview.widget.CardView>
 
             <TextView
