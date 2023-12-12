@@ -1,16 +1,18 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.example.foodsapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.foodsapp"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -71,4 +73,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01")
     implementation("androidx.lifecycle:lifecycle-extensions:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+
+    //room
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.room:room-rxjava2:2.6.1")
+    implementation("androidx.room:room-rxjava3:2.6.1")
 }
