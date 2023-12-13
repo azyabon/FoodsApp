@@ -1,6 +1,7 @@
 package com.example.foodsapp.retrofit
 
 import com.example.foodsapp.pojo.CategoryList
+import com.example.foodsapp.pojo.Meal
 import com.example.foodsapp.pojo.MealsByCategoryList
 import com.example.foodsapp.pojo.MealList
 import retrofit2.Call
@@ -22,4 +23,7 @@ interface MealAPI {
 
     @GET("filter.php")
     fun getMealsByCategory(@Query("c") category: String): Call<MealsByCategoryList>
+
+    @GET("search.php")
+    fun searchMeals(@Query("s") search: String): Call<MealList>
 }

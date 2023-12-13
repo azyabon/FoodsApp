@@ -25,6 +25,8 @@ class HomeViewModel(
     private var popularMealsLiveData = MutableLiveData<List<MealsByCategory>>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
     private var savedMealsLiveData = mealDatabase.mealDao().getMeals()
+    private var sheetMealLiveData = MutableLiveData<Meal>()
+    private var searchedMealLiveData = MutableLiveData<List<Meal>>()
 
     fun getRandomMeal() {
         RetrofitInstance.api.getRandomMeal().enqueue(object: Callback<MealList> {
@@ -75,11 +77,47 @@ class HomeViewModel(
         })
     }
 
+    fun getMealById(id: String) {
+        RetrofitInstance.api.getMealById(id).enqueue(object : Callback<MealList>{
+            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                val meal = response.body()?.meals?.first()
+
+                meal?.let {mealIt ->
+                    sheetMealLiveData.postValue(mealIt)
+                }
+            }
+
+            override fun onFailure(call: Call<MealList>, t: Throwable) {
+                Log.e("HomeFragment", t.message.toString())
+            }
+
+        })
+    }
+
     fun deleteMeal(meal: Meal) {
         viewModelScope.launch {
             mealDatabase.mealDao().delete(meal)
         }
     }
+
+    fun searchMeals(search: String) = RetrofitInstance.api.searchMeals(search).enqueue(
+        object : Callback<MealList> {
+            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                val mealsList = response.body()?.meals
+
+                mealsList?.let {
+                    searchedMealLiveData.postValue(it)
+                }
+            }
+
+            override fun onFailure(call: Call<MealList>, t: Throwable) {
+                Log.e("HomeFragment", t.message.toString())
+            }
+
+        }
+    )
+
+    fun observeSearchMealsLiveData(): LiveData<List<Meal>> = searchedMealLiveData
 
     fun observeRandomMealLiveData(): LiveData<Meal> {
         return randomMealLiveData
@@ -95,5 +133,9 @@ class HomeViewModel(
 
     fun observeSavedMealsLiveData(): LiveData<List<Meal>> {
         return savedMealsLiveData
+    }
+
+    fun observeSheetMealLiveData(): LiveData<Meal> {
+        return sheetMealLiveData
     }
 }

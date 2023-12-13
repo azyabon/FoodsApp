@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.sheets.MealSheet"
+    android:background="@color/white"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/img_meal_sheet"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="5dp"
+        android:src="@color/accent"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/ll_sheet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/img_meal_sheet"
+        app:layout_constraintTop_toTopOf="@+id/img_meal_sheet"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/tv_meal_sheet_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Russia"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/g_black"
+            android:drawableLeft="@drawable/ic_place"
+            android:drawableTint="@color/g_black"
+            android:gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/tv_meal_sheet_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beef"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/g_black"
+            android:drawableLeft="@drawable/ic_categories"
+            android:drawableTint="@color/g_black"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_meal_sheet_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meal name"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:textSize="@dimen/_16sdp"
+        android:textColor="@color/g_black"
+        app:layout_constraintStart_toStartOf="@+id/ll_sheet"
+        app:layout_constraintTop_toBottomOf="@+id/ll_sheet"
+        android:layout_margin="@dimen/_5sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

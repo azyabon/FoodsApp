@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.foodsapp.R
 import com.example.foodsapp.activities.CategoryActivity
 import com.example.foodsapp.activities.MainActivity
 import com.example.foodsapp.activities.MealActivity
 import com.example.foodsapp.adapters.CategoryAdapter
 import com.example.foodsapp.adapters.PopularMealAdapter
 import com.example.foodsapp.databinding.FragmentHomeBinding
+import com.example.foodsapp.fragments.sheets.MealSheet
 import com.example.foodsapp.pojo.MealsByCategory
 import com.example.foodsapp.pojo.Meal
 import com.example.foodsapp.viewModel.HomeViewModel
@@ -70,6 +73,24 @@ class HomeFragment : Fragment() {
         viewModel.getCategories()
         observerCategories()
         onCategoryClick()
+
+        onPopularLongItemClick()
+
+        onSearchIconClick()
+    }
+
+    private fun onSearchIconClick() {
+        binding.imgSearch.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
+        }
+    }
+
+    private fun onPopularLongItemClick() {
+        popularMealsAdapter.onLongItemClick = {meal ->
+            val mealSheetFragment: MealSheet = MealSheet.newInstance(meal.idMeal)
+
+            mealSheetFragment.show(childFragmentManager, "Meal Info")
+        }
     }
 
     private fun onCategoryClick() {

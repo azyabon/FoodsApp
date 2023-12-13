@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.foodsapp.databinding.MealItemBinding
 import com.example.foodsapp.pojo.MealsByCategory
 
-class MealAdapter: RecyclerView.Adapter<MealAdapter.CategoryViewModel>() {
+class CategoryMealAdapter: RecyclerView.Adapter<CategoryMealAdapter.CategoryViewModel>() {
     private var mealsList = ArrayList<MealsByCategory>()
 
     fun setMeals(mealsList: List<MealsByCategory>) {

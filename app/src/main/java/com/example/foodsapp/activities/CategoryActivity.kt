@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.foodsapp.adapters.MealAdapter
+import com.example.foodsapp.adapters.CategoryMealAdapter
 import com.example.foodsapp.databinding.ActivityCategoryBinding
 import com.example.foodsapp.fragments.HomeFragment
 import com.example.foodsapp.viewModel.CategoryViewModel
@@ -13,7 +13,7 @@ import com.example.foodsapp.viewModel.CategoryViewModel
 class CategoryActivity : AppCompatActivity() {
     lateinit var binding: ActivityCategoryBinding
     lateinit var categoryViewModel: CategoryViewModel
-    lateinit var mealAdapter: MealAdapter
+    lateinit var categoryMealAdapter: CategoryMealAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +29,16 @@ class CategoryActivity : AppCompatActivity() {
 
         categoryViewModel.observeMealsLiveData().observe(this, Observer { mealsList ->
             binding.tvCategoryCount.text = "${intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!}: ${mealsList.size}"
-            mealAdapter.setMeals(mealsList)
+            categoryMealAdapter.setMeals(mealsList)
         })
     }
 
     private fun prepareRecycleView() {
-        mealAdapter = MealAdapter()
+        categoryMealAdapter = CategoryMealAdapter()
 
         binding.rvCategoryMeals.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-            adapter = mealAdapter
+            adapter = categoryMealAdapter
         }
     }
 }

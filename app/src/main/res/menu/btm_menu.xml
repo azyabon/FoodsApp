@@ -2,5 +2,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="" android:icon="@drawable/ic_home" android:id="@+id/homeFragment" />
     <item android:title="" android:icon="@drawable/ic_favorites" android:id="@+id/favoritesFragment" />
-    <item android:title="" android:icon="@drawable/ic_categories" android:id="@+id/categoriesFragment" />
 </menu>
