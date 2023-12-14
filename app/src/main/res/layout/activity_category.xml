@@ -6,24 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".activities.CategoryActivity">
 
-    <TextView
-        android:id="@+id/tv_category_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/_16ssp"
-        android:textColor="@color/accent"
-        android:fontFamily="@font/myfont"
-        android:text=""
+    <LinearLayout
+        android:id="@+id/ll_category"
+        android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_5sdp" />
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/accent"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_category_count"
+            android:layout_weight="20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/accent"
+            android:fontFamily="@font/myfont"
+            android:text="1221" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category_meals"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category_count"
+        app:layout_constraintTop_toBottomOf="@+id/ll_category"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">

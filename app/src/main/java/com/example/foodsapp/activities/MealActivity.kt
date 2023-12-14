@@ -45,6 +45,10 @@ class MealActivity : AppCompatActivity() {
 
         onYoutubeImageClick()
         onSaveClick()
+
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun onSaveClick() {

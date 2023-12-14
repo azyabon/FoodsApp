@@ -1,5 +1,6 @@
 package com.example.foodsapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodsapp.activities.MainActivity
+import com.example.foodsapp.activities.MealActivity
 import com.example.foodsapp.adapters.MealsAdapter
 import com.example.foodsapp.databinding.FragmentSearchBinding
 import com.example.foodsapp.viewModel.HomeViewModel
@@ -55,6 +57,19 @@ class SearchFragment : Fragment() {
                 delay(500)
                 viewModel.searchMeals(searchQuery.toString())
             }
+        }
+
+        onMealClick()
+    }
+
+    private fun onMealClick() {
+        searchRecycleViewAdapter.onItemClick = { meal ->
+            val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(HomeFragment.MEAL_ID, meal.idMeal)
+            intent.putExtra(HomeFragment.MEAL_NAME, meal.strMeal)
+            intent.putExtra(HomeFragment.MEAL_THUMB, meal.strMealThumb)
+
+            startActivity(intent);
         }
     }
 

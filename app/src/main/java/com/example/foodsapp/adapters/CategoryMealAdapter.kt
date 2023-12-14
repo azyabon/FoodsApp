@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodsapp.databinding.MealItemBinding
+import com.example.foodsapp.pojo.Category
 import com.example.foodsapp.pojo.MealsByCategory
 
 class CategoryMealAdapter: RecyclerView.Adapter<CategoryMealAdapter.CategoryViewModel>() {
     private var mealsList = ArrayList<MealsByCategory>()
+    var onItemClick: ((MealsByCategory) -> Unit)? = null
 
     fun setMeals(mealsList: List<MealsByCategory>) {
         this.mealsList = mealsList as ArrayList<MealsByCategory>
@@ -35,5 +37,10 @@ class CategoryMealAdapter: RecyclerView.Adapter<CategoryMealAdapter.CategoryView
             .into(holder.binding.imgMeal)
 
         holder.binding.tvMealName.text = mealsList[position].strMeal
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(mealsList[position])
+        }
+
     }
 }
